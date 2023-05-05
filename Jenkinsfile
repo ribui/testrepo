@@ -33,7 +33,7 @@ pipeline {
     stage('Terraform Apply') {
       steps {
         //sh 'cd Terraform'
-        sh 'terraform apply tfplan'
+        sh 'terraform apply "tfplan"'
       }
     }
   }
