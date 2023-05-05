@@ -8,7 +8,7 @@ pipeline {
           $class: 'AmazonWebServicesCredentialsBinding',
           accessKeyVariable: 'AWS_ACCESS_KEY_ID',
           secretKeyVariable: 'AWS_SECRET_ACCESS_KEY',
-          credentialsId: 'aws-access-key-id'
+          credentialsId: 'AWS_Credentials'
         ]]) {
           sh 'export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID'
           sh 'export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY'
