@@ -1,16 +1,18 @@
-
-# Configure AWS provider
 provider "aws" {
-  region = "us-east-1"
+  region = "us-east-1" # Replace with the region you want to use
 }
 
-# Provision an EC2 instance
-resource "aws_instance" "example" {
-  ami           = "ami-0889a44b331db0194" # Amazon Linux 2 AMI
-  instance_type = "t2.micro"
-  key_name      = "example_key"
-  
-  tags = {
-    Name = "Example Instance"
+resource "aws_ecr_repository" "example" {
+  name = "my-ecr-repo" # Replace with the name you want to use
+
+  image_scanning_configuration {
+    scan_on_push = true
+  }
+
+  image_tag_mutability = "MUTABLE"
+
+  lifecycle {
+    prevent_destroy = false # Set to true to prevent accidental deletion
   }
 }
+
