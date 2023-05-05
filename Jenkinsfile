@@ -19,20 +19,20 @@ pipeline {
     
     stage('Terraform Init') {
       steps {
-        sh 'cd Terraform && terraform init'
+        sh 'terraform init'
       }
     }
     
     stage('Terraform Plan') {
       steps {
-        sh 'cd Terraform'
+        //sh 'cd Terraform'
         sh 'terraform plan -out=tfplan'
       }
     }
     
     stage('Terraform Apply') {
       steps {
-        sh 'cd Terraform'
+        //sh 'cd Terraform'
         sh 'terraform apply tfplan'
       }
     }
