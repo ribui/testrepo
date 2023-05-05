@@ -1,14 +1,9 @@
-
 provider "aws" {
-  region = "us-east-1" # Replace with the region you want to use
+  region = "us-east-1"   # Update with the desired region
 }
 
-resource "aws_iam_user" "example" {
-  name = "my-iam-user" # Replace with the name you want to use
+resource "aws_s3_bucket" "my_bucket" {
+  bucket = "mybucketname2023"   # Update with the desired bucket name
+  acl    = "private"          # Specify the bucket's access control list (ACL)
 }
-
-resource "aws_iam_access_key" "example" {
-  user = aws_iam_user.example.name
-}
-
 
