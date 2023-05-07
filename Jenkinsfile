@@ -23,7 +23,7 @@ pipeline {
     stage('build docker frontend and backend images using a dockerfile') {
       steps {
         script { 
-            dockerImage = docker.build registry('my-docker-image:latest', '.')
+            docker.build('my-docker-image:latest', '.')
         }
         //sh 'terraform init'
         sh 'echo "Successfully Build Docker Frontend and Backend Image using Dockerfile"'
