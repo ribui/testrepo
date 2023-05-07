@@ -23,7 +23,7 @@ pipeline {
     stage('Build Docker Frontend and Backend Images') {
       steps {
         script {
-          docker.build('my-docker-image:latest1', '.')
+          docker.build('my-docker-image:latest', '.')
         }
         sh 'echo "Successfully Built Docker Frontend and Backend Images using Dockerfile"'
       }
@@ -38,7 +38,7 @@ pipeline {
           credentialsId: 'AWS_Credentials'
         ]]) {
         sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 160503865246.dkr.ecr.us-east-1.amazonaws.com'
-        sh 'docker push 160503865246.dkr.ecr.us-east-1.amazonaws.com/my-docker-image:latest1'
+        sh 'docker push 160503865246.dkr.ecr.us-east-1.amazonaws.com/docker-test:latest'
         sh 'echo "Successfully Authenticated with AWS"'
         sh 'echo "Pushing Images to ECR..."'
         }
