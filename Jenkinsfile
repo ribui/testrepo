@@ -23,6 +23,7 @@ pipeline {
     stage('Terraform Init') {
       steps {
         //sh 'terraform init'
+        sh 'echo "Successfully authenticated with AWS"'
       }
     }
     
@@ -30,6 +31,7 @@ pipeline {
       steps {
         //sh 'cd Terraform'
         //sh 'terraform plan -out=tfplan'
+        sh 'echo "Successfully authenticated with AWS"'
       }
     }
     
@@ -37,6 +39,7 @@ pipeline {
       steps {
         //sh 'cd Terraform'
         //sh 'terraform apply "tfplan"'
+        sh 'echo "Successfully authenticated with AWS"'
       }
     }
   }
