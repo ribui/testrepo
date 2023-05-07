@@ -5,7 +5,7 @@ FROM node:16
 WORKDIR /frontend/app
 
 # Copy the package.json and package-lock.json files to the container
-COPY ./Application/frontend/* ./
+COPY ./frontend/* ./
 
 # Install the app's dependencies
 RUN npm ci
