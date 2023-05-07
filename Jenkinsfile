@@ -1,6 +1,6 @@
 pipeline {
   agent any
- 
+  
   stages {
     stage('Authenticate with AWS') {
       steps {
@@ -15,34 +15,31 @@ pipeline {
           sh 'echo "Successfully authenticated with AWS"'
           sh 'terraform init'
           sh 'terraform plan -out=tfplan'
-          sh 'terraform apply --auto-approve "tfplan"'
+          sh 'terraform apply --auto-approve tfplan'
         }
       }
     }
     
-    stage('build docker frontend and backend images using a dockerfile') {
+    stage('Build Docker Frontend and Backend Images') {
       steps {
-        script { 
-            docker.build('my-docker-image:latest', '.')
+        script {
+          docker.build('my-docker-image:latest', '.')
         }
-        //sh 'terraform init'
-        sh 'echo "Successfully Build Docker Frontend and Backend Image using Dockerfile"'
+        sh 'echo "Successfully Built Docker Frontend and Backend Images using Dockerfile"'
       }
     }
     
-    stage('push frontend and backend images to ecr') {
+    stage('Push Images to ECR') {
       steps {
-        //sh 'cd Terraform'
-        //sh 'terraform plan -out=tfplan'
-        sh 'echo "Successfully authenticated with AWS"'
+        sh 'echo "Successfully Authenticated with AWS"'
+        sh 'echo "Pushing Images to ECR..."'
       }
     }
     
-    stage('pull image from ecr and deploy to ecs') {
+    stage('Deploy to ECS') {
       steps {
-        //sh 'cd Terraform'
-        //sh 'terraform apply "tfplan"'
-        sh 'echo "Successfully authenticated with AWS"'
+        sh 'echo "Successfully Authenticated with AWS"'
+        sh 'echo "Deploying Images to ECS..."'
       }
     }
   }
