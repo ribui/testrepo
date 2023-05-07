@@ -20,14 +20,15 @@ pipeline {
       }
     }
     
-    stage('Terraform Init') {
+    stage('build docker frontend and backend images using a dockerfile') {
       steps {
+         dockerImage = docker.build registry
         //sh 'terraform init'
-        sh 'echo "Successfully authenticated with AWS"'
+        sh 'echo "Successfully Build Docker Frontend and Backend Image using Dockerfile"'
       }
     }
     
-    stage('Terraform Plan') {
+    stage('push frontend and backend images to ecr') {
       steps {
         //sh 'cd Terraform'
         //sh 'terraform plan -out=tfplan'
@@ -35,7 +36,7 @@ pipeline {
       }
     }
     
-    stage('Terraform Apply') {
+    stage('pull image from ecr and deploy to ecs') {
       steps {
         //sh 'cd Terraform'
         //sh 'terraform apply "tfplan"'
