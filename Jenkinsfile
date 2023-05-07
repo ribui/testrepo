@@ -38,6 +38,7 @@ pipeline {
           credentialsId: 'AWS_Credentials'
         ]]) {
         sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 160503865246.dkr.ecr.us-east-1.amazonaws.com'
+        sh 'docker tag my-docker-image:latest 160503865246.dkr.ecr.us-east-1.amazonaws.com/docker-test:latest'
         sh 'docker push 160503865246.dkr.ecr.us-east-1.amazonaws.com/docker-test:latest'
         sh 'echo "Successfully Authenticated with AWS"'
         sh 'echo "Pushing Images to ECR..."'
