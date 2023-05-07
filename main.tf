@@ -1,10 +1,10 @@
 
 provider "aws" {
-  region = "us-east-1" # Replace with the region you want to use
+  region = "us-east-1" 
 }
 
 resource "aws_iam_user" "example" {
-  name = "my-iam-user" # Replace with the name you want to use
+  name = "my-iam-user" 
 }
 
 resource "aws_iam_access_key" "example" {
