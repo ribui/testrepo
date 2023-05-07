@@ -13,27 +13,30 @@ pipeline {
           sh 'export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID'
           sh 'export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY'
           sh 'echo "Successfully authenticated with AWS"'
+          sh 'terraform init'
+          sh 'terraform plan -out=tfplan'
+          sh 'terraform apply --auto-apply "tfplan"'
         }
       }
     }
     
     stage('Terraform Init') {
       steps {
-        sh 'terraform init'
+        //sh 'terraform init'
       }
     }
     
     stage('Terraform Plan') {
       steps {
         //sh 'cd Terraform'
-        sh 'terraform plan -out=tfplan'
+        //sh 'terraform plan -out=tfplan'
       }
     }
     
     stage('Terraform Apply') {
       steps {
         //sh 'cd Terraform'
-        sh 'terraform apply "tfplan"'
+        //sh 'terraform apply "tfplan"'
       }
     }
   }
