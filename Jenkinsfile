@@ -31,10 +31,17 @@ pipeline {
     
     stage('Push Images to ECR') {
       steps {
+        withCredentials([[
+          $class: 'AmazonWebServicesCredentialsBinding',
+          accessKeyVariable: 'AWS_ACCESS_KEY_ID',
+          secretKeyVariable: 'AWS_SECRET_ACCESS_KEY',
+          credentialsId: 'AWS_Credentials'
+        ]]) {
         sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 160503865246.dkr.ecr.us-east-1.amazonaws.com'
         sh 'docker push 160503865246.dkr.ecr.us-east-1.amazonaws.com/my-docker-image:latest1'
         sh 'echo "Successfully Authenticated with AWS"'
         sh 'echo "Pushing Images to ECR..."'
+        }
       }
     }
     
