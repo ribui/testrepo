@@ -12,8 +12,7 @@ COPY package*.json ./
 RUN npm install
 
 COPY . .
-
-# RUN npm ci
+RUN npm ci
 
 # Expose the port the app will run on
 EXPOSE 8080
