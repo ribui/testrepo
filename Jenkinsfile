@@ -43,7 +43,7 @@ pipeline {
         sh 'docker tag my-docker-image:latest 160503865246.dkr.ecr.us-east-1.amazonaws.com/docker-test:latest'
         sh 'docker push 160503865246.dkr.ecr.us-east-1.amazonaws.com/docker-test:latest'
         
-        sh 'docker tag my-backend-image:${BUILD_NUMBER} 160503865246.dkr.ecr.us-east-1.amazonaws.com/docker-test:${BUILD_NUMBER}'  
+        sh 'docker tag my-backend-image:latest 160503865246.dkr.ecr.us-east-1.amazonaws.com/docker-test:${BUILD_NUMBER}'  
         sh 'docker push 160503865246.dkr.ecr.us-east-1.amazonaws.com/docker-test:${BUILD_NUMBER}'
           
         sh 'echo "Successfully Authenticated with AWS"'
