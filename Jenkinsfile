@@ -24,7 +24,7 @@ pipeline {
       steps {
         script {
           docker.build('my-docker-image:latest', './frontend')
-          docker.build('my-backend-image:latest', './backend')
+          docker.build('my-backend-image:${env.BUILD_NUMBER}', './backend')
         }
         sh 'echo "Successfully Built Docker Frontend and Backend Images using Dockerfile"'
       }
@@ -46,8 +46,8 @@ pipeline {
         sh 'echo "Succefully Tagged and pushed my-docker-image to ECR"'
         
         sh 'echo "Tagging and pushing the my-backend-image to ECR"'
-        sh 'docker tag my-backend-image:latest 160503865246.dkr.ecr.us-east-1.amazonaws.com/docker-test:latest'  
-        sh 'docker push 160503865246.dkr.ecr.us-east-1.amazonaws.com/docker-test:latest'
+        sh 'docker tag my-backend-image:latest 160503865246.dkr.ecr.us-east-1.amazonaws.com/docker-test:${env.BUILD_NUMBER}'  
+        sh 'docker push 160503865246.dkr.ecr.us-east-1.amazonaws.com/docker-test:${env.BUILD_NUMBER}'
         sh 'echo "Tagging and pushing the my-docker-image to ECR"'
          
         sh 'echo "TAGGING AND PUSHING IMAGES TO ECR SUCCESS....."'
