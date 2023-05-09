@@ -23,7 +23,7 @@ pipeline {
     stage('Build Docker Frontend and Backend Images') {
       steps {
         script {
-          docker.build('my-docker-image:latest', '.')
+          docker.build('my-docker-image:latest', './frontend')
         }
         sh 'echo "Successfully Built Docker Frontend and Backend Images using Dockerfile"'
       }
